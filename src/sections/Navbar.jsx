@@ -19,7 +19,7 @@ const NavItems = () => {
   );
 };
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen((prevIsOpen) => !prevIsOpen);
 
   return (
@@ -54,8 +54,8 @@ const Navbar = () => {
           </nav>
         </div>
       </div>
-      <div className={`nav-sidebar ${isOpen ? "max-h-screen" : "max-h-0"}  `} >
-        <nav className="p-5" >
+      <div className={`nav-sidebar ${isOpen ? "max-h-screen" : "max-h-0"}  `}>
+        <nav className="p-5">
           <NavItems />
         </nav>
       </div>
