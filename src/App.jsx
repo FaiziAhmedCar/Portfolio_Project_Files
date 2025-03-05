@@ -1,12 +1,13 @@
 import React from "react";
 import Navbar from "./sections/navbar.jsx";
-import Hero from "./sections/Hero.jsx";
+import Hero from "./sections/Hero.jsx"; 
 
 const App = () => {
   return (
     <div className="max-w-7xl mx-auto">
       <Navbar />
-      <Hero />
+      <Hero/>
+      
     </div>
   );
 };

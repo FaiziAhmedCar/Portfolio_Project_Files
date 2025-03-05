@@ -1,4 +1,8 @@
-import React from "react";
+import { Canvas } from "@react-three/fiber";
+import MySetup from "./../components/MySetup";
+import CanvasLoader from "./../components/CanvasLoader";
+import { Suspense } from "react";
+import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 
 const Hero = () => {
   return (
@@ -12,7 +16,25 @@ const Hero = () => {
         </p>
       </div>
       <div className="w-full  h-full absolute inset-0">
-        
+        <Canvas className="w-full h-full ">
+          <Suspense fallback={<CanvasLoader />}>
+            <PerspectiveCamera makeDefault position={[0, 0, 30]} />
+            <OrbitControls
+              enableZoom={false}
+              enablePan
+              enableRotate
+              minPolarAngle={Math.PI / 2}
+              maxPolarAngle={Math.PI / 2}
+            />
+            <ambientLight intensity={0.1} />
+            <directionalLight position={[5, 5, 1]} intensity={5} />
+            <MySetup
+              scale={100}
+              position={[5, -10, 0]}
+              rotation={[0, 0.1, 0]}
+            />
+          </Suspense>
+        </Canvas>
       </div>
     </section>
   );
