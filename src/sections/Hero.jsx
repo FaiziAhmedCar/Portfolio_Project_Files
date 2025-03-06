@@ -3,8 +3,22 @@ import MySetup from "./../components/MySetup";
 import CanvasLoader from "./../components/CanvasLoader";
 import { Suspense } from "react";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import { useMediaQuery } from "react-responsive";
+import { calculateSizes } from "../constants";
+import Target from "../components/Target";
 
 const Hero = () => {
+  const isSmall = useMediaQuery({ maxWidth: 440 });
+  const isMobile = useMediaQuery({
+    minWidth: 441,
+    maxWidth: 768,
+  });
+  const isTablet = useMediaQuery({
+    minWidth: 769,
+    maxWidth: 1024,
+  });
+
+  const size = calculateSizes(isSmall, isMobile, isTablet);
   return (
     <section className="min-h-screen w-full flex flex-col relative">
       <div className="w-full mx-auto flex flex-col sm:mt-36 mt-20 c-space gap-3">
@@ -26,13 +40,16 @@ const Hero = () => {
               minPolarAngle={Math.PI / 2}
               maxPolarAngle={Math.PI / 2}
             />
-            <ambientLight intensity={0.1} />
-            <directionalLight position={[5, 5, 1]} intensity={5} />
             <MySetup
-              scale={100}
-              position={[5, -10, 0]}
-              rotation={[0, 0.1, 0]}
+              scale={size.deskScale}
+              position={size.deskPosition}
+              rotation={[0, 0.1, -0.01]}
             />
+            <group>
+              <Target position={size.targetPosition} />
+            </group>
+            <ambientLight intensity={0.9} />
+            <directionalLight position={[5, 5, 1]} intensity={5} />
           </Suspense>
         </Canvas>
       </div>
