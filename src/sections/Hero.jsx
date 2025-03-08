@@ -6,6 +6,10 @@ import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { useMediaQuery } from "react-responsive";
 import { calculateSizes } from "../constants";
 import Target from "../components/Target";
+import ReactLogo from "../components/ReactLogo";
+import Cube from "../components/Cube";
+import Rings from './../components/Ring';
+
 
 const Hero = () => {
   const isSmall = useMediaQuery({ maxWidth: 440 });
@@ -46,8 +50,10 @@ const Hero = () => {
               rotation={[0, 0.1, -0.01]}
             />
             <group>
-              <Target position={size.targetPosition} scale={3}/>
-              
+              <Target position={size.targetPosition} scale={2.5} />
+              <ReactLogo position={size.reactLogoPosition} scale={0.3} />
+              <Cube position={size.cubePosition} scale={1.5} />
+              <Rings />
             </group>
             <ambientLight intensity={0.9} />
             <directionalLight position={[5, 5, 1]} intensity={5} />
