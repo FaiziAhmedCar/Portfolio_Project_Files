@@ -1,7 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import MySetup from "./../components/MySetup";
 import CanvasLoader from "./../components/CanvasLoader";
-import { Suspense,  } from "react";
+import { Suspense } from "react";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { useMediaQuery } from "react-responsive";
 import { calculateSizes } from "../constants";
@@ -9,9 +9,9 @@ import Target from "../components/Target";
 import ReactLogo from "../components/ReactLogo";
 import Cube from "../components/Cube";
 import Rings from "./../components/Ring";
+import HeroCamera from "../components/HeroCamera";
 
 const Hero = () => {
-  
   const isSmall = useMediaQuery({ maxWidth: 440 });
   const isMobile = useMediaQuery({
     minWidth: 441,
@@ -37,24 +37,30 @@ const Hero = () => {
         <Canvas className="w-full h-full ">
           <Suspense fallback={<CanvasLoader />}>
             <PerspectiveCamera makeDefault position={[0, 0, 30]} />
-                <OrbitControls
-                enableZoom={false}
+            {/* <OrbitControls
+                enableZoom={true}
                 enablePan
-                enableRotate
-                minPolarAngle={Math.PI / 2}
-                maxPolarAngle={Math.PI / 2}
+                enableRotate={true}
+                // minPolarAngle={Math.PI / 2}
+                // maxPolarAngle={Math.PI / 2}
+              /> */}
+            <HeroCamera isMobile={isMobile} >
+              <MySetup
+                scale={size.deskScale}
+                position={size.deskPosition}
+                rotation={[0, 0.1, -0.01]}
               />
-                <MySetup 
-                  scale={size.deskScale}
-                  position={size.deskPosition}
-                  rotation={[0, 0.1, -0.01]}
-                />
-                <group >
-                <Target position={size.targetPosition} scale={size.targetScale}  />
-                <ReactLogo position={size.reactLogoPosition} scale={size.reactLogoScale} />
-                <Cube position={size.cubePosition} scale={size.cubeScale} />
-                <Rings position={size.ringPosition} scale={size.ringScale} />
-              </group>
+            </HeroCamera>
+
+            <group>
+              <Target position={size.targetPosition} scale={size.targetScale} />
+              <ReactLogo
+                position={size.reactLogoPosition}
+                scale={size.reactLogoScale}
+              />
+              <Cube position={size.cubePosition} scale={size.cubeScale} />
+              <Rings position={size.ringPosition} scale={size.ringScale} />
+            </group>
             <ambientLight intensity={0.9} />
             <directionalLight position={[5, 5, 1]} intensity={5} />
           </Suspense>
