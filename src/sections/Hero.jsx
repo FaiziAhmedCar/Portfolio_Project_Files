@@ -2,7 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import MySetup from "./../components/MySetup";
 import CanvasLoader from "./../components/CanvasLoader";
 import { Suspense } from "react";
-import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import { PerspectiveCamera } from "@react-three/drei";
 import { useMediaQuery } from "react-responsive";
 import { calculateSizes } from "../constants";
 import Target from "../components/Target";
@@ -10,6 +10,7 @@ import ReactLogo from "../components/ReactLogo";
 import Cube from "../components/Cube";
 import Rings from "./../components/Ring";
 import HeroCamera from "../components/HeroCamera";
+import Button from "../components/Button";
 
 const Hero = () => {
   const isSmall = useMediaQuery({ maxWidth: 440 });
@@ -37,14 +38,8 @@ const Hero = () => {
         <Canvas className="w-full h-full ">
           <Suspense fallback={<CanvasLoader />}>
             <PerspectiveCamera makeDefault position={[0, 0, 30]} />
-            {/* <OrbitControls
-                enableZoom={true}
-                enablePan
-                enableRotate={true}
-                // minPolarAngle={Math.PI / 2}
-                // maxPolarAngle={Math.PI / 2}
-              /> */}
-            <HeroCamera isMobile={isMobile} >
+
+            <HeroCamera isMobile={isMobile}>
               <MySetup
                 scale={size.deskScale}
                 position={size.deskPosition}
@@ -65,6 +60,15 @@ const Hero = () => {
             <directionalLight position={[5, 5, 1]} intensity={5} />
           </Suspense>
         </Canvas>
+      </div>
+      <div className="absolute  bottom-6 left-0 right-0 w-full z-10 c-space">
+        <a href="#contact" className="w-fit">
+          <Button
+            name="Let's work together"
+            isBeam
+            containerClass="sm:w-fit w-full sm:min-w-96"
+          />
+        </a>
       </div>
     </section>
   );

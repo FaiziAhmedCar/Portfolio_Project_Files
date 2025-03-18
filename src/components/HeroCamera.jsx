@@ -5,17 +5,17 @@ import React, { useRef } from "react";
 const HeroCamera = ({ children, isMobile }) => {
   const groupRef = useRef();
   useFrame((state, delta) => {
-    easing.damp3(state.camera.position, [0, 0, 20], 0.25, delta);
+    easing.damp3(state.camera.position, [0, 0, 30], 0.25, delta);
     if (!isMobile) {
       easing.dampE(
-        groupRef.current.position,
-        [state.pointer.y / 3, state.pointer.y / 5, 0],
+        groupRef.current.rotation,
+        [-state.pointer.y / 3, state.pointer.x / 3, 0],
         0.25,
         delta
       );
     }
   });
-  return <group>{children}</group>;
+  return <group ref={groupRef}>{children}</group>;
 };
 
 export default HeroCamera;
