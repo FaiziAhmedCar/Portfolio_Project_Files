@@ -18,15 +18,20 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      emailjs.send("service_44xeuea", "template_bbvfw82", {
+      await emailjs.send("service_mxr1s93", "template_iqotb7h", {
         from_name: form.name,
         to_name: "Faizi Ahmed",
         from_email: form.email,
         to_email: "faiziahmedcar@gmail.com",
         message: form.message,
-      },"lmGYFhMdKvLWx5Q8U");
+      },"bOXz5o8Xjxyd5Whj8");
       setLoading(false);
       alert("Thank you. I will get back to you as soon as possible.");
+      setForm({
+        name: "",
+        email: "",
+        message: "",
+      })
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -36,12 +41,12 @@ const Contact = () => {
 
   return (
     <section className="c-space my-20">
-      <div className="relative min-h-screen flex items-center justify-center flex-col">
-        <img
+      <div className="relative min-h-screen flex items-center justify-center flex-col grid-container shadow-inner  shadow-white-500  ">
+        {/* <img
           src="./assets/terminal.png"
           alt="terminal background"
           className="absolute inset-0 min-h-screen"
-        />
+        /> */}
         <div className="contact-container py-20">
           <h3 className="head-text">Let's get in touch</h3>
           <p className="text-lg text-white-600 mt-3 ">
@@ -62,7 +67,7 @@ const Contact = () => {
                 onChange={handelChange}
                 required
                 className="field-input"
-                placeholder="Faizi Ahmed"
+                placeholder="eg: Faizi Ahmed"
               />
             </label>
             <label className="space-y-3">
@@ -74,7 +79,7 @@ const Contact = () => {
                 onChange={handelChange}
                 required
                 className="field-input"
-                placeholder="faiziahmedcar@gmail.com"
+                placeholder="eg: faiziahmedcar@gmail.com"
               />
             </label>
             <label className="space-y-3">
@@ -84,7 +89,7 @@ const Contact = () => {
                 value={form.message}
                 onChange={handelChange}
                 required
-                rows="5"
+                rows={5}
                 className="field-input"
                 placeholder="Write your message here..."
               />
