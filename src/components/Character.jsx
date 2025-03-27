@@ -1,40 +1,92 @@
+import React, { useEffect } from "react";
+import { useGraph } from "@react-three/fiber";
+import { useAnimations, useFBX, useGLTF } from "@react-three/drei";
+import { SkeletonUtils } from "three-stdlib";
 
-import React from 'react'
-import { useGLTF } from '@react-three/drei'
+const Character = ({ animationName="idle", ...props }) => {
+  const group = React.useRef();
+  const { scene } = useGLTF("/models/animations/character.glb");
+  const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
+  const { nodes, materials } = useGraph(clone);
 
-const Character=(props) => {
-  const { nodes, materials } = useGLTF('/models/animations/character.glb')
+  const {animations:idleAnimations} =useFBX("/models/animations/idle.fbx");
+  idleAnimations[0].name="idle";
+  const {actions} = useAnimations([idleAnimations[0]], group);
+  useEffect(() => {
+    actions[animationName].reset().fadeIn(0.5).play();
+    // return()=> actions[animationName].fadeOut(0.5);
+  },[animationName])
   return (
-    <group {...props} dispose={null}>
-      <group position={[-0.64, 454.553, 49.77]} rotation={[-Math.PI / 2, 0, 0]} scale={100}>
-        <mesh geometry={nodes.Sphere001_Material012_0.geometry} material={materials['Material.012']} />
-        <mesh geometry={nodes.Sphere001_Material013_0.geometry} material={materials['Material.013']} />
-        <mesh geometry={nodes.Sphere001_Material014_0.geometry} material={materials['Material.014']} />
-        <mesh geometry={nodes.Sphere001_Material015_0.geometry} material={materials['Material.015']} />
-        <mesh geometry={nodes.Sphere001_Material017_0.geometry} material={materials['Material.017']} />
-        <mesh geometry={nodes.Sphere001_Material016_0.geometry} material={materials['Material.016']} />
-      </group>
-      <group position={[2.577, 404.361, 19.816]} rotation={[-Math.PI / 2, 0, 0]} scale={[64.044, 45.138, 100]}>
-        <mesh geometry={nodes.Cylinder001_Material003_0.geometry} material={materials['Material.003']} />
-        <mesh geometry={nodes.Cylinder001_Material002_0.geometry} material={materials['Material.002']} />
-        <mesh geometry={nodes.Cylinder001_Material009_0.geometry} material={materials['Material.009']} />
-      </group>
-      <group rotation={[-Math.PI / 2, 0, 0]} scale={100}>
-        <mesh geometry={nodes.Cylinder_Material005_0.geometry} material={materials['Material.005']} />
-        <mesh geometry={nodes.Cylinder_Material004_0.geometry} material={materials['Material.004']} />
-        <mesh geometry={nodes.Cylinder_Material001_0.geometry} material={materials['Material.001']} />
-        <mesh geometry={nodes.Cylinder_Material_0.geometry} material={materials.Material} />
-        <mesh geometry={nodes.Cylinder_Material006_0.geometry} material={materials['Material.006']} />
-        <mesh geometry={nodes.Cylinder_Material018_0.geometry} material={materials['Material.018']} />
-        <mesh geometry={nodes.Cylinder_Material010_0.geometry} material={materials['Material.010']} />
-        <mesh geometry={nodes.Cylinder_Material007_0.geometry} material={materials['Material.007']} />
-        <mesh geometry={nodes.Cylinder_Material008_0.geometry} material={materials['Material.008']} />
-        <mesh geometry={nodes.Cylinder_Material011_0.geometry} material={materials['Material.011']} />
-      </group>
-      <mesh geometry={nodes.Sphere_Material020_0.geometry} material={materials['Material.020']} position={[1.692, 665.54, 46.998]} rotation={[-Math.PI / 2, 0, 0]} scale={41.965} />
+    <group {...props} dispose={null} ref={group}>
+      <primitive object={nodes.GLTF_created_0_rootJoint} />
+      <skinnedMesh
+        geometry={nodes.Object_7.geometry}
+        material={materials.N00_000_00_Body_00_SKIN_Instance}
+        skeleton={nodes.Object_7.skeleton}
+      />
+      <skinnedMesh
+        geometry={nodes.Object_8.geometry}
+        material={materials.N00_001_02_Bottoms_01_CLOTH_Instance}
+        skeleton={nodes.Object_8.skeleton}
+      />
+      <skinnedMesh
+        geometry={nodes.Object_9.geometry}
+        material={materials.N00_004_01_Shoes_01_CLOTH_Instance}
+        skeleton={nodes.Object_9.skeleton}
+      />
+      <skinnedMesh
+        geometry={nodes.Object_10.geometry}
+        material={materials.N00_005_01_Tops_01_CLOTH_Instance}
+        skeleton={nodes.Object_10.skeleton}
+      />
+      <skinnedMesh
+        geometry={nodes.Object_11.geometry}
+        material={materials.N00_000_00_HairBack_00_HAIR_Instance}
+        skeleton={nodes.Object_11.skeleton}
+      />
+      <skinnedMesh
+        geometry={nodes.Object_13.geometry}
+        material={materials.N00_000_00_FaceMouth_00_FACE_Instance}
+        skeleton={nodes.Object_13.skeleton}
+      />
+      <skinnedMesh
+        geometry={nodes.Object_14.geometry}
+        material={materials.N00_000_00_EyeIris_00_EYE_Instance}
+        skeleton={nodes.Object_14.skeleton}
+      />
+      <skinnedMesh
+        geometry={nodes.Object_15.geometry}
+        material={materials.N00_000_00_EyeHighlight_00_EYE_Instance}
+        skeleton={nodes.Object_15.skeleton}
+      />
+      <skinnedMesh
+        geometry={nodes.Object_16.geometry}
+        material={materials.N00_000_00_Face_00_SKIN_Instance}
+        skeleton={nodes.Object_16.skeleton}
+      />
+      <skinnedMesh
+        geometry={nodes.Object_17.geometry}
+        material={materials.N00_000_00_EyeWhite_00_EYE_Instance}
+        skeleton={nodes.Object_17.skeleton}
+      />
+      <skinnedMesh
+        geometry={nodes.Object_18.geometry}
+        material={materials.N00_000_00_FaceBrow_00_FACE_Instance}
+        skeleton={nodes.Object_18.skeleton}
+      />
+      <skinnedMesh
+        geometry={nodes.Object_19.geometry}
+        material={materials.N00_000_00_FaceEyeline_00_FACE_Instance}
+        skeleton={nodes.Object_19.skeleton}
+      />
+      <skinnedMesh
+        geometry={nodes.Object_21.geometry}
+        material={materials.N00_000_Hair_00_HAIR_Instance}
+        skeleton={nodes.Object_21.skeleton}
+      />
     </group>
-  )
-}
+  );
+};
 
-useGLTF.preload('/models/animations/character.glb')
-export default Character
+useGLTF.preload("/models/animations/character.glb");
+export default Character;

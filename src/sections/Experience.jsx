@@ -1,10 +1,9 @@
 import { Canvas } from "@react-three/fiber";
 import React, { Suspense } from "react";
 import { workExperiences } from "../constants";
-import { OrbitControls } from "@react-three/drei";
-import Character from "../components/Character";
-import CanvasLoader from './../components/CanvasLoader';
-
+import { OrbitControls, Plane } from "@react-three/drei";
+import CanvasLoader from "./../components/CanvasLoader";
+import Character from "./../components/Character";
 
 const Experience = () => {
   return (
@@ -14,23 +13,28 @@ const Experience = () => {
         <div className="work-container">
           <div className="work-canvas">
             <Canvas>
-              <ambientLight intensity={7} />
-              <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-              <directionalLight position={[10, 10, 10]} intensity={1} />
-              <OrbitControls
-                enableZoom={false}
-                enablePan={false}
-                maxPolarAngle={Math.PI / 2}
-              />
               <Suspense fallback={<CanvasLoader />}>
-                <Character position={[0, 0, 0]} scale={100} />
+                <ambientLight intensity={1} />
+                <spotLight position={[10, 10, 10]} angle={0.15} penumbra={10} />
+                <directionalLight position={[10, 10, 10]} intensity={0.5} />
+                <OrbitControls
+                  enableZoom={false}
+                  enablePan={false}
+                  maxPolarAngle={Math.PI / 2}
+                />
+
+                <Character
+                  position={[0, -2.9, 0]}
+                  scale={3.5}
+                  rotation={[0, 3.2, 0]}
+                />
               </Suspense>
             </Canvas>
           </div>
           <div className="work-content">
             <div className="sm:py-10 py-5 sm:px-5 px-2.5">
               {workExperiences.map(
-                ({ id, name, pos, duration, title, icon, animation }) => (
+                ({ id, name, pos, duration, title, icon }) => (
                   <div key={id} className="work-content_container group ">
                     <div className="flex flex-col h-full justify-start items-center py-2">
                       <div className="work-content_logo">
