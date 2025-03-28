@@ -1,11 +1,12 @@
 import { Canvas } from "@react-three/fiber";
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import { workExperiences } from "../constants";
-import { OrbitControls, Plane } from "@react-three/drei";
+import { OrbitControls} from "@react-three/drei";
 import CanvasLoader from "./../components/CanvasLoader";
 import Character from "./../components/Character";
 
 const Experience = () => {
+  const [animationName, setAnimationName] = useState("idle");
   return (
     <section className="c-space my-20">
       <div className="w-full text-white-600">
@@ -27,6 +28,7 @@ const Experience = () => {
                   position={[0, -2.9, 0]}
                   scale={3.5}
                   rotation={[0, 3.2, 0]}
+                  animationName={animationName}
                 />
               </Suspense>
             </Canvas>
@@ -34,8 +36,16 @@ const Experience = () => {
           <div className="work-content">
             <div className="sm:py-10 py-5 sm:px-5 px-2.5">
               {workExperiences.map(
-                ({ id, name, pos, duration, title, icon }) => (
-                  <div key={id} className="work-content_container group ">
+                ({ id, name, pos, duration, title, icon ,animation}) => (
+                  <div
+                    key={id}
+                    className="work-content_container group "
+                    onClick={() => setAnimationName(animation.toLowerCase())}
+                    onPointerOver={() =>
+                      setAnimationName(animation.toLowerCase())
+                    }
+                    onPointerOut={() => setAnimationName("idle")}
+                  >
                     <div className="flex flex-col h-full justify-start items-center py-2">
                       <div className="work-content_logo">
                         <img src={icon} alt="logo" className="w-full h-full" />
