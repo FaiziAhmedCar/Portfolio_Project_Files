@@ -6,7 +6,7 @@ import CanvasLoader from "./../components/CanvasLoader";
 import Character from "./../components/Character";
 
 const Experience = () => {
-  const [animationName, setAnimationName] = useState("idle");
+  // const [animationName, setAnimationName] = useState("idle");
   return (
     <section className="c-space my-20">
       <div className="w-full text-white-600">
@@ -28,7 +28,7 @@ const Experience = () => {
                   position={[0, -2.9, 0]}
                   scale={3.5}
                   rotation={[0, 3.2, 0]}
-                  animationName={animationName}
+                  // animationName={animationName}
                 />
               </Suspense>
             </Canvas>

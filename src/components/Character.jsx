@@ -10,42 +10,42 @@ const Character = ({ animationName = "idle", ...props }) => {
   const { nodes, materials } = useGraph(clone);
 
   const { animations: idleAnimations } = useFBX("/models/animations/idle.fbx");
-  const { animations: startWalkAnimations } = useFBX(
-    "/models/animations/Start_Walking.fbx"
-  );
-  const { animations: robotDanceAnimations } = useFBX(
-    "/models/animations/Robot_Dance.fbx"
-  );
-  const { animations: turnToRunAnimations } = useFBX(
-    "/models/animations/Turn_To_Running.fbx"
-  );
-  const { animations: breakDanceAnimations } = useFBX(
-    "/models/animations/Breakdance_Spin.fbx"
-  );
+  // const { animations: startWalkAnimations } = useFBX(
+  //   "/models/animations/Start_Walking.fbx"
+  // );
+  // const { animations: robotDanceAnimations } = useFBX(
+  //   "/models/animations/Robot_Dance.fbx"
+  // );
+  // const { animations: turnToRunAnimations } = useFBX(
+  //   "/models/animations/Turn_To_Running.fbx"
+  // );
+  // const { animations: breakDanceAnimations } = useFBX(
+  //   "/models/animations/Breakdance_Spin.fbx"
+  // );
 
   idleAnimations[0].name = "idle";
-  startWalkAnimations[0].name = "Walk";
-  robotDanceAnimations[0].name = "robot";
-  turnToRunAnimations[0].name = "Run";
-  breakDanceAnimations[0].name = "spin";
+  // startWalkAnimations[0].name = "Walk";
+  // robotDanceAnimations[0].name = "robot";
+  // turnToRunAnimations[0].name = "Run";
+  // breakDanceAnimations[0].name = "spin";
   const { actions } = useAnimations(
     [
       idleAnimations[0],
-      startWalkAnimations[0],
-      robotDanceAnimations[0],
-      turnToRunAnimations[0],
-      breakDanceAnimations[0],
+      // startWalkAnimations[0],
+      // robotDanceAnimations[0],
+      // turnToRunAnimations[0],
+      // breakDanceAnimations[0],
     ],
     group
   );
   useEffect(() => {
-    if (actions[animationName]) {
+    // if (actions[animationName]) {
       actions[animationName].reset().fadeIn(0.5).play();
-    }
+    // }
     return () => {
-      if (actions[animationName]) {
-        actions[animationName].reset().fadeOut(0.5);
-      }
+      // if (actions[animationName]) {
+        // actions[animationName].reset().fadeOut(0.5);
+      // }
     };
   }, [animationName]);
 

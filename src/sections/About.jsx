@@ -23,8 +23,8 @@ const About = () => {
               className="w-full sm:h-[276px] h-fit object-contain"
             />
             <div>
-              <p className="grid-headtext">Hi, I am Faizi</p>
-              <p className="grid-subtext">I am a Full Stack Web Developer</p>
+              <p className="grid-headtext">Hi, I'm Faizi!</p>
+              <p className="grid-subtext">I’m a Full-Stack Web Developer passionate about building dynamic and user-friendly web applications.</p>
             </div>
           </div>
         </div>
@@ -36,10 +36,9 @@ const About = () => {
               className="w-full sm:w-[276px] h-fit object-contain"
             />
             <div>
-              <p className="grid-headtext">Tech Stack</p>
+              <p className="grid-headtext">Tech Stack :</p>
               <p className="grid-subtext">
-                I specialize in JavaScript/TypeScript with a focus on React and
-                Next.js ecosystem.{" "}
+              I specialize in modern web development with React.js, Next.js, and Tailwind CSS for the front-end, combined with Node.js, Express.js, and MongoDB for scalable back-end solutions. My workflow is enhanced by tools like GitHub and Arcjet.{" "}
               </p>
             </div>
           </div>
@@ -70,10 +69,10 @@ const About = () => {
             </div>
             <div>
               <p className="grid-headtext">
-                I work remotely across most time zones
+              I work remotely and adapt to various time zones to ensure smooth project collaboration.
               </p>
               <p className="grid-subtext">
-                I'am based in India, with remote work available
+              I work remotely from India, collaborating with clients worldwide.
               </p>
               <a href="#contact">
                 <Button
@@ -90,7 +89,7 @@ const About = () => {
                 <img src="./assets/grid3.png" alt="grid-3" className="w-full sm:h-[266px] h-fit object-contain " />
                 <div>
                     <p className="grid-headtext"  >My Passion for Coding</p>
-                    <p className="grid-subtext" >I love solving problems and learning new things</p>
+                    <p className="grid-subtext" >Coding is more than just writing lines of code—it’s about solving problems, building innovative solutions, and creating seamless digital experiences. I love transforming ideas into functional applications, exploring new technologies, and continuously learning. Every project challenges me to think creatively and push the boundaries of what's possible.</p>
                 </div>
             </div>
         </div>
